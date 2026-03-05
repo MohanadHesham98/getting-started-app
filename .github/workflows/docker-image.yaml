@@ -30,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/getting-started-app:latest
+          tags: ghcr.io/${{ github.repository_owne.toLower()}}/getting-started-app:latest
