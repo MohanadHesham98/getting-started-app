@@ -1,0 +1,36 @@
+name: Docker Image CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu:latest
+
+  steps:
+    - name: checkout code
+      uses: actions/checkout@V3
+
+    - name: setup docker buildx
+      uses: docker/setup-buildx-action@V3
+
+    - name: login into github container registry
+      uses: docker/login-action@V3
+      with:
+        registry: ghcr.io
+        username: ${{github.repository_owner}}
+        password: ${{secrets.GITHUB_TOKEN}}
+
+    - name: build and push Docker images
+      uses: docker/build-push-action@V5
+      with:
+        context: .
+        push: true
+        tag: ghcr.io/${{github.repository_owner}}/getting-start-app:latest
+
+ 
+
