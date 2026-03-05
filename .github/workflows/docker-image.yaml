@@ -1,5 +1,4 @@
-name: Docker CI/CD & Deploy to EC2
- 
+name: Docker CI/CD & Deploy to EC2 
 on:
   push:
     branches:
